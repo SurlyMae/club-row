@@ -1,21 +1,21 @@
 import {
-  List,
-  ListItem,
   Box,
   Divider,
-  ListIcon,
-  Center,
   LinkBox,
   LinkOverlay,
+  List,
+  ListIcon,
+  ListItem,
 } from "@chakra-ui/layout";
-import {
-  MdHomeFilled,
-  MdSearch,
-  MdEditCalendar,
-  MdCalendarToday,
-} from "react-icons/md";
 import NextImage from "next/image";
 import NextLink from "next/link";
+import {
+  MdCalendarToday,
+  MdEditCalendar,
+  MdHomeFilled,
+  MdSearch,
+} from "react-icons/md";
+import { useEvents } from "../lib/hooks";
 
 const navMenu = [
   {
@@ -41,25 +41,9 @@ const createEvent = {
   route: "/",
 };
 
-const events = [
-  {
-    id: 1,
-    label: "Rowing Camp",
-    route: "/",
-  },
-  {
-    id: 2,
-    label: "Marina BBQ",
-    route: "/",
-  },
-  {
-    id: 3,
-    label: "Boatyard Cleanup",
-    route: "/",
-  },
-];
-
 const Sidebar = () => {
+  const { events } = useEvents();
+
   return (
     <Box
       width="100%"
@@ -111,9 +95,7 @@ const Sidebar = () => {
               {events.map((event) => (
                 <ListItem paddingX="20px" key={event.id}>
                   <LinkBox>
-                    <NextLink href={event.route} passHref>
-                      <LinkOverlay>{event.label}</LinkOverlay>
-                    </NextLink>
+                    <LinkOverlay>{event.name}</LinkOverlay>
                   </LinkBox>
                 </ListItem>
               ))}

@@ -17,7 +17,6 @@ model User {
   name      String
   email     String   @unique
   password  String
-  // user can have many events
   events    Event[]
 }
 
@@ -28,10 +27,8 @@ model Event {
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
   name      String          @unique
-  //events can have many users
-  users     User[]
-  //events can have many schedules
   schedules EventSchedule[]
+  attendees User[]
 }
 
 // admin should be able to CRUD schedules
@@ -46,10 +43,10 @@ model EventSchedule {
   date      String?
   time      String?
   details   String?
-  // what else needs to be on the schedule model? 
+  // what else needs to be on the schedule model?
   // recurrent type like 'daily' or 'weekly'?
   // start date, end date, days of the week ... might need an event schedule type (daily, weekly)
-  // start time, end time, 
+  // start time, end time,
   // how do we keep users from having to enter the same schedule info over and over?
   // what is the easiest way for a user to say, 'add the same event for every Tuesday at 6 and every saturday at 8?'
   // and what is the most performant way for a user to search by 'events in the next month' or 'events in x timeframe'?

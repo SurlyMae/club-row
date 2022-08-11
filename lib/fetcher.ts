@@ -1,5 +1,4 @@
 export default function fetcher(url: string, data = undefined) {
-  console.log(`inside fetcher url is ${url}`);
   return fetch(`${window.location.origin}/api/${url}`, {
     method: data ? "POST" : "GET",
     credentials: "include",
@@ -7,5 +6,8 @@ export default function fetcher(url: string, data = undefined) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+  }).then((res) => {
+    // TODO: error handling based on status codes?
+    return res.json;
   });
 }
