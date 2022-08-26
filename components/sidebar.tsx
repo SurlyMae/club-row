@@ -9,13 +9,13 @@ import {
 } from "@chakra-ui/layout";
 import NextImage from "next/image";
 import NextLink from "next/link";
+import { useEffect, useState } from "react";
 import {
   MdCalendarToday,
   MdEditCalendar,
   MdHomeFilled,
   MdSearch,
 } from "react-icons/md";
-import { useEvents } from "../lib/hooks";
 
 const navMenu = [
   {
@@ -42,7 +42,18 @@ const createEvent = {
 };
 
 const Sidebar = () => {
-  const { events } = useEvents();
+  const [events, setEvents] = useState([]);
+
+  // TODO: reimplement custom hook
+  async function getEvents() {
+    const response: any = await fetch(`${window.location.origin}/api/events`);
+    const json = await response.json();
+    setEvents(json);
+  }
+
+  useEffect(() => {
+    getEvents();
+  });
 
   return (
     <Box

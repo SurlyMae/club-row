@@ -12,13 +12,13 @@ export const useMe = () => {
   };
 };
 
-export const useEvents = () => {
-  const { data, error } = useSWR("/events", fetcher);
-  console.log(data);
-  return {
-    // TODO: fix this any
-    events: data || [],
-    isLoading: !data && !error,
-    isError: error,
-  };
-};
+// export const useEvents = async () => {
+//   const { data, error } = useSWR("/events", fetcher);
+
+//   return {
+//     // TODO: fix this any
+//     events: data,
+//     isLoading: !data && !error,
+//     isError: error,
+//   };
+// };

@@ -1,5 +1,5 @@
 export default function fetcher(url: string, data = undefined) {
-  return fetch(`${window.location.origin}/api/${url}`, {
+  return fetch(`${window.location.origin}/api${url}`, {
     method: data ? "POST" : "GET",
     credentials: "include",
     headers: {
@@ -8,6 +8,6 @@ export default function fetcher(url: string, data = undefined) {
     body: JSON.stringify(data),
   }).then((res) => {
     // TODO: error handling based on status codes?
-    return res.json;
+    return res.json();
   });
 }
